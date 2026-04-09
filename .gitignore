@@ -1,0 +1,24 @@
+# Claude
+.claude/
+CLAUDE.md
+
+# Docker volumes / runtime
+*.log
+tmp/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
