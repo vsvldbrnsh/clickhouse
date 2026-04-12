@@ -15,17 +15,7 @@ done
 echo "Schemas applied."
 echo ""
 
-# Step 2: Run all data loaders
-echo "Running data loaders..."
-for loader in /clickhouse/data/*/load.sh; do
-    if [ -f "$loader" ]; then
-        echo "  Running $(basename "$(dirname "$loader")")/load.sh..."
-        bash "$loader"
-    fi
-done
-echo ""
-
-# Step 3: Verification
+# Step 2: Verification
 echo "=== Verification ==="
 
 $CH_CLIENT --query "SELECT count() AS total_rows, min(tpep_pickup_datetime) AS earliest_trip, max(tpep_pickup_datetime) AS latest_trip FROM nyc_taxi.trips"

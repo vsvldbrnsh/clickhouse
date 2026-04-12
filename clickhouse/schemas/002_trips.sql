@@ -24,3 +24,8 @@ ENGINE = ReplicatedMergeTree('/clickhouse/tables/{shard}/nyc_taxi/trips', '{repl
 PARTITION BY toYYYYMM(tpep_pickup_datetime)
 ORDER BY (PULocationID, tpep_pickup_datetime)
 SETTINGS index_granularity = 8192;
+
+
+CREATE TABLE IF NOT EXISTS nyc_taxi.trips ON CLUSTER taxi_cluster
+AS nyc_taxi.trips_local
+ENGINE = Distributed(taxi_cluster, nyc_taxi, trips_local, rand());
